@@ -1,4 +1,4 @@
-<article classs="detail-article">
+<article class="detail-article">
   <h1 class="article-detail-title"><%= @article.title %> </h1>
   <div class="glyphicon glyphicon-calender" id="article-date">
     <%= @article.created_at.strftime("%b %d %Y") %>
@@ -6,8 +6,15 @@
   
   <div class="article-body">
     <%= @article.body %>
+  
   </div>
   
-  <% link_to "Edit Article", edit_article_path(@article), class: "btn btn-primary btn-lg btn-space" %>
+  <div class="edit-delete">
+    <%= link_to "Edit Article", edit_article_path(@article), class: "btn btn-primary btn-lg btn-space" %>
+    
+    <%= link_to "Delete Article", article_path(@article), method: :delete,
+      data: {confirm: "Are you sure you want to delete"}, 
+      class: "btn btn-primary btn-lg btn-space" %>
+  </div>
   
-</article-classs>
+</article-class>
