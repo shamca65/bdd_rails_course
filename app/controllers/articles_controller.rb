@@ -1,4 +1,8 @@
 class ArticlesController < ApplicationController
+  #ruby filter  - the private method set_article will be run first for the 
+  # actions listed
+  before_action :set_article, only:[:show, :edit, :update, :destroy]
+  
   def index
     @articles=Article.all
   end
@@ -20,15 +24,15 @@ class ArticlesController < ApplicationController
   end
   
   def show
-    @article = Article.find(params[:id])
+   
   end
   
   def edit
-    @article = Article.find(params[:id])
+   
   end
  
   def update
-    @article = Article.find(params[:id])
+    
     @article.update_attributes article_params
     if @article.save 
       flash[:notice] = "Article has been updated"
@@ -40,7 +44,7 @@ class ArticlesController < ApplicationController
   end 
   
   def destroy
-    @article = Article.find(params[:id])
+    
     if @article.destroy
       flash[:success] = "Article has been deleted"
       redirect_to articles_path
@@ -56,6 +60,10 @@ class ArticlesController < ApplicationController
   end
 
   private 
+  
+  def set_article
+   @article = Article.find(params[:id])
+  end
   
   def article_params
     params.require(:article).permit(:title, :body)
