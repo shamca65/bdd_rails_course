@@ -15,5 +15,4 @@ RSpec.feature "Deleting an Article" do
     expect(current_path).to eq(articles_path)
 
   end
-  
 end
