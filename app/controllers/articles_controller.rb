@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   #ruby filter  - the private method set_article will be run first for the 
   # actions listed
-  #before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_article, only:[:show, :edit, :update, :destroy]
   
   def index
