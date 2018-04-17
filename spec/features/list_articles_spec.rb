@@ -5,8 +5,9 @@ RSpec.feature "Listing Articles" do
   # create 2 articles to display
 
   before do
-    @article1 = Article.create(title: "This is the first", body: "This is the body 1")
-    @article2 = Article.create(title: "This is the second", body: "This is the body 2")
+    john = User.create(email: "john@example.com", password: "password")
+    @article1 = Article.create(title: "This is the first", body: "This is the body 1", user: john)
+    @article2 = Article.create(title: "This is the second", body: "This is the body 2", user: john)
   end
   
   scenario "A user lists all articles" do
