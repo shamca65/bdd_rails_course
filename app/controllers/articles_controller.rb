@@ -30,19 +30,26 @@ class ArticlesController < ApplicationController
   end
   
   def edit
-   
+    unless @article.user == current_user
+      flash[:danger] = "You can only edit your own articles"
+      redirect_to root_path
+    end
   end
  
   def update
-    
-    @article.update_attributes article_params
-    if @article.save 
-      flash[:notice] = "Article has been updated"
-      redirect_to(@article)
+    unless @article.user == current_user
+      flash[:danger] = "You can only edit your own articles"
+    redirect_to root_path
     else
-      flash[:notice] = "Article has not been updated"
-      render 'edit'
-    end 
+      @article.update_attributes article_params
+      if @article.save 
+        flash[:notice] = "Article has been updated"
+        redirect_to(@article)
+      else
+        flash[:notice] = "Article has not been updated"
+        render 'edit'
+      end
+    end
   end 
   
   def destroy
