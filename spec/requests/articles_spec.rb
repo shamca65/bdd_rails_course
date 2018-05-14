@@ -44,9 +44,18 @@ RSpec.describe "Articles", type: :request do
           expect(response.status).to eq 200
         end
       end   
-      
   end
   
+  describe 'GET /articles/:id/delete' do
+    before {get "/articles/#{@article.id}/delete"}
+    
+    context 'with a non-owner'do
+      it 'does not allow non-owner to delete an article' do
+        expect(page.response).to eq 302
+      end
+    
+    end
+  end
   
   describe 'GET /articles/:id' do
     context 'with existing article' do
