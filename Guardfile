@@ -1,3 +1,4 @@
+
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
@@ -49,7 +50,8 @@ end
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: "bundle exec rspec" do
+guard :rspec, cmd: "bundle exec rspec --tty --color"  do
+  
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 

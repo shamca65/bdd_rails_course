@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
   def new
     #need a view for new (template)
     @article = Article.new
+    @comments = @article.comments
   end
   
   def create
@@ -26,7 +27,9 @@ class ArticlesController < ApplicationController
   end
   
   def show
-   
+    # build adds a new comment to the comment collection
+    @comment = @article.comments.build
+    @comments = @article.comments
   end
   
   def edit
